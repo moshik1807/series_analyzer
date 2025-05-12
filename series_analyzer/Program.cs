@@ -31,31 +31,31 @@ namespace series_analyzer
                     switch (choice)
                     {
                         case 1:
-                            replaceSeries();
+                            replaceSeries(series);
                             break;
                         case 2:
-                            printSeries();
+                            printSeries(series);
                             break;
                         case 3:
-                            printReverse();
+                            printReverse(series);
                             break;
                         case 4:
-                            sortSeries();
+                            sortSeries(series);
                             break;
                         case 5:
-                            maximum();
+                            maximum(series);
                             break;
                         case 6:
-                            minimum();
+                            minimum(series);
                             break;
                         case 7:
-                            average();
+                            average(series);
                             break;
                         case 8:
-                            amountOfElements();
+                            amountOfElements(series);
                             break;
                         case 9:
-                            SumSeries();
+                            SumSeries(series);
                             break;
                         case 10:
                             temp = false;
