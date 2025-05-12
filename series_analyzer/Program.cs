@@ -1,23 +1,24 @@
 ﻿using System.ComponentModel.Design;
 using System.Diagnostics.CodeAnalysis;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 namespace series_analyzer
 {
     class program
     {
-        static void main(string[] args)
+        static void Main(string[] args)
         {
             menu();
 
             void menu()
             {
+
                 Console.WriteLine("enter series numbers");
                 string series = Console.ReadLine();
-                replaceSeries(series);
                 bool temp = false;
-                while (true)
+                while (temp)
                     {                
-                    Console.WriteLine("For replace a series of numbers clik 1\n" +
+                    Console.WriteLine("For replace a series of numbers clik 0 and for Continue with existing number clik 1\n" +
                         "To print the serues numbers clik 2\n" +
                         "To print the series in reverse clik 3\n" +
                         "To Sort the series clik 4\n" +
@@ -31,38 +32,53 @@ namespace series_analyzer
                     switch (choice)
                     {
                         case 1:
-                            replaceSeries(series);
+                            seriesUpdate();
                             break;
-                        case 2:
-                            printSeries(series);
-                            break;
-                        case 3:
-                            printReverse(series);
-                            break;
-                        case 4:
-                            sortSeries(series);
-                            break;
-                        case 5:
-                            maximum(series);
-                            break;
-                        case 6:
-                            minimum(series);
-                            break;
-                        case 7:
-                            average(series);
-                            break;
-                        case 8:
-                            amountOfElements(series);
-                            break;
-                        case 9:
-                            SumSeries(series);
-                            break;
+                        //case 2:
+                        //    printSeries(series);
+                        //    break;
+                        //case 3:
+                        //    printReverse(series);
+                        //    break;
+                        //case 4:
+                        //    sortSeries(series);
+                        //    break;
+                        //case 5:
+                        //    maximum(series);
+                        //    break;
+                        //case 6:
+                        //    minimum(series);
+                        //    break;
+                        //case 7:
+                        //    average(series);
+                        //    break;
+                        //case 8:
+                        //    amountOfElements(series);
+                        //    break;
+                        //case 9:
+                        //    SumSeries(series);
+                        //    break;
                         case 10:
                             temp = false;
                             break;
+
                     }
                 }
                
+            }
+            List<int> seriesUpdate()
+            {
+                Console.WriteLine("enter series numbers");
+                string series = Console.ReadLine();                
+                List<int> seriesNumbers = new List<int>();
+                List<string> seriesString = new List<string> (series.Split(","));
+                foreach (var number in seriesString)
+                {
+                    int num = int.Parse(number);
+                    seriesNumbers.Add(num);                 
+                }
+                Console.WriteLine("D");
+                return seriesNumbers;
             }
 
         }
