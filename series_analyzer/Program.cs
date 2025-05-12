@@ -21,8 +21,8 @@ namespace series_analyzer
                         "To print the serues numbers clik 2\n" +
                         "To print the series in reverse clik 3\n" +
                         "To Sort the series clik 4\n" +
-                        "To max number in series clik 5\n" +
-                        "To minimum number in series clik 6\n" +
+                        "To minimum number in series clik 5\n" +
+                        "To maximum number in series clik 6\n" +
                         "For the average of the series click 7\n" +
                         "For The number of elements in the series clik 8\n" +
                         "For the sum numbers in series clik 9\n" +
@@ -42,12 +42,12 @@ namespace series_analyzer
                         case 4:
                             sortSeries(numbers);
                             break;
-                        //case 5:
-                        //    maximum(series);
-                        //    break;
-                        //case 6:
-                        //    minimum(series);
-                        //    break;
+                        case 5:
+                            minimum(numbers);
+                            break;
+                        case 6:
+                            maximum(numbers);
+                            break;
                         //case 7:
                         //    average(series);
                         //    break;
@@ -117,7 +117,31 @@ namespace series_analyzer
 
             }
 
+            void minimum(List<int> numbersList)
+            {
+                int minimum = numbersList[0];
+                foreach (var number in numbersList)
+                {
+                    if (number < minimum)
+                    {
+                        minimum = number;
+                    }
+                }
+                Console.WriteLine(minimum);
+            }
 
+            void maximum(List<int> numbersList)
+            {
+                int maximum = numbersList[0];
+                foreach (var number in numbersList)
+                {
+                    if (number > maximum)
+                    {
+                        maximum = number;
+                    }
+                }
+                Console.WriteLine(maximum);
+            }
         }
     }
     
