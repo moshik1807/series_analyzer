@@ -73,12 +73,12 @@ namespace series_analyzer
             int CorrectnessOfChoice()//בדיקת תקינות בחירת המשתמש 
             {
                 string choice = Console.ReadLine();
-                bool b = int.TryParse(choice, out int y);
-                while (!b)
+                bool proper = int.TryParse(choice, out int y);
+                while (!proper)
                 {
                     Console.WriteLine("enter your choice in numbers");
                     choice = Console.ReadLine();
-                    b = int.TryParse(choice, out int x);
+                    proper = int.TryParse(choice, out int x);
                 }
                 return int.Parse(choice);
             }
