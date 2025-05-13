@@ -6,17 +6,18 @@ namespace series_analyzer
 {
     class program
     {
+
         static void Main(string[] args)
         {
             menu();
 
-            List<int> numbers = new List<int>();
-            void menu()
+            void menu()//מפעיל
             {
-                seriesUpdate();
-                bool temp = true;
-                while (temp)
-                    {                
+                List<int> numbers = new List<int>();
+                numbers = seriesUpdate();
+                bool exit = true;
+                while (exit)
+                {
                     Console.WriteLine("For replace a series of numbers clik 1\n" +
                         "To print the serues numbers clik 2\n" +
                         "To print the series in reverse clik 3\n" +
@@ -31,7 +32,7 @@ namespace series_analyzer
                     switch (choice)
                     {
                         case 1:
-                           numbers = seriesUpdate();
+                            numbers = seriesUpdate();
                             break;
                         case 2:
                             printSeries(numbers);
@@ -43,60 +44,93 @@ namespace series_analyzer
                             sortSeries(numbers);
                             break;
                         case 5:
-                            minimum(numbers);
+                            Console.WriteLine(minimum(numbers));
                             break;
                         case 6:
-                            maximum(numbers);
+                            Console.WriteLine(maximum(numbers));
                             break;
                         case 7:
-                            average(numbers);
+                            Console.WriteLine(average(numbers));
                             break;
                         case 8:
-                            amountOfElements(numbers);
+                            Console.WriteLine(amountOfElements(numbers));
                             break;
                         case 9:
-                            SumSeries(numbers);
+                            Console.WriteLine(SumSeries(numbers));
                             break;
                         case 10:
-                            temp = false;
+                            exit = false;
+                            break;
+                        default:
                             break;
 
                     }
                 }
-               
+
+
             }
-            List<int> seriesUpdate()
+            List<int> seriesUpdate() // קבלת סטרינג , בדיקה והמרה למערך מספרים  
             {
+                bool positiveNumbers = true;
                 Console.WriteLine("enter series numbers");
-                string series = Console.ReadLine();                
+                string series = Console.ReadLine();
                 List<int> seriesNumbers = new List<int>();
-                List<string> seriesString = new List<string> (series.Split(","));
-                foreach (var number in seriesString)
+                List<string> seriesString = new List<string>(series.Split(","));
+                foreach (string str in seriesString)
                 {
-                    int num = int.Parse(number);
-                    seriesNumbers.Add(num);                 
+                    if (int.TryParse(str, out int numm))
+                    {
+                        if (int.Parse(str) < 0)
+                        {
+                            positiveNumbers = false;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        if (str != ",")
+                        {
+                            positiveNumbers = false;
+                            break;
+                        }
+                    }
                 }
-                numbers = seriesNumbers;
+                if (!positiveNumbers)
+                {
+                    return seriesUpdate();
+                }
+                else
+                {
+                    foreach (var number in seriesString)
+                    {
+                        int num = int.Parse(number);
+                        seriesNumbers.Add(num);
+                    }
+                }
+
                 return seriesNumbers;
             }
-            void printSeries(List<int> numbersList)
+
+            void printSeries(List<int> numbersList)//הדפסת הסדרה
             {
                 foreach (var number in numbersList)
                 {
                     Console.WriteLine(number);
                 }
             }
-            void printReverse(List<int> numbersList)
+
+            void printReverse(List<int> numbersList)//הדפסת הסדרה הפוך
             {
-                for (int i = (numbersList.Count)-1;i > -1;i--)
+                for (int i = (numbersList.Count) - 1; i > -1; i--)
                 {
                     Console.WriteLine(numbersList[i]);
                 }
             }
-            void sortSeries(List<int> numbersList)
+
+            void sortSeries(List<int> numbersList)//הדפסת הסדרה בצורה ממויינת
             {
                 List<int> sortList = new List<int>();
-                List<int> tempList =new List<int>();
+                List<int> tempList = new List<int>();
                 for (int i = 0; i < numbersList.Count; i++)
                 {
                     tempList.Add(numbersList[i]);
@@ -121,7 +155,7 @@ namespace series_analyzer
 
             }
 
-            void minimum(List<int> numbersList)
+            int minimum(List<int> numbersList)//מחזירה מינימום
             {
                 int minimum = numbersList[0];
                 foreach (var number in numbersList)
@@ -131,10 +165,10 @@ namespace series_analyzer
                         minimum = number;
                     }
                 }
-                Console.WriteLine(minimum);
+                return minimum;
             }
 
-            void maximum(List<int> numbersList)
+            int maximum(List<int> numbersList)//מחזירה מקסימום
             {
                 int maximum = numbersList[0];
                 foreach (var number in numbersList)
@@ -144,33 +178,38 @@ namespace series_analyzer
                         maximum = number;
                     }
                 }
-                Console.WriteLine(maximum);
+                return maximum;
             }
-            void average(List<int> numbersList)
-            {
-                int sum = 0;
-                foreach (var number in numbers)
-                {
-                    sum += number;
-                }
-                Console.WriteLine(sum / numbersList.Count);
-            }
-            void amountOfElements(List<int> numbersList)
-            {
-                Console.WriteLine(numbersList.Count);
-            }
-            void SumSeries(List<int> numbersList)
+
+            int average(List<int> numbersList)//חישוב ממוצע
             {
                 int sum = 0;
                 foreach (var number in numbersList)
                 {
                     sum += number;
                 }
-                Console.WriteLine(sum);
+                return sum / numbersList.Count;
+            }
+
+
+            int amountOfElements(List<int> numbersList)//כמות האלמנטים בסדרה
+            {
+                return numbersList.Count;
+            }
+
+            int SumSeries(List<int> numbersList)//סוכמת את המספרים בסדרה
+            {
+                int sum = 0;
+                foreach (var number in numbersList)
+                {
+                    sum += number;
+                }
+                //Console.WriteLine(sum);
+                return sum;
             }
         }
 
-        
+
     }
-    
+
 }
