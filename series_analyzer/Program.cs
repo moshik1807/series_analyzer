@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 namespace series_analyzer
-{
+{// בשימוש בתכנית צריך להכניס מספרים שמפריד ביניהם פסיק  
     class program
     {
 
@@ -12,7 +12,7 @@ namespace series_analyzer
             menu();
 
             void menu()//מפעיל
-            {
+            {                    
                 List<int> numbers = new List<int>();
                 numbers = seriesUpdate();
                 bool exit = true;
@@ -201,3 +201,5 @@ namespace series_analyzer
     }
 
 }
+
+
