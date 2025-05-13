@@ -28,7 +28,8 @@ namespace series_analyzer
                         "For The number of elements in the series clik 8\n" +
                         "For the sum numbers in series clik 9\n" +
                         "For exit clik 10");
-                    int choice = int.Parse(Console.ReadLine());
+                    int choice = CorrectnessOfChoice();
+
                     switch (choice)
                     {
                         case 1:
@@ -66,9 +67,23 @@ namespace series_analyzer
 
                     }
                 }
-
-
             }
+
+
+            int CorrectnessOfChoice()//בדיקת תקינות בחירת המשתמש 
+            {
+                string choice = Console.ReadLine();
+                bool b = int.TryParse(choice, out int y);
+                while (!b)
+                {
+                    Console.WriteLine("enter your choice in numbers");
+                    choice = Console.ReadLine();
+                    b = int.TryParse(choice, out int x);
+                }
+                return int.Parse(choice);
+            }
+
+
             List<int> seriesUpdate() // קבלת סטרינג , בדיקה והמרה למערך מספרים  
             {
                 bool positiveNumbers = true;
@@ -111,6 +126,7 @@ namespace series_analyzer
                 return seriesNumbers;
             }
 
+
             void printSeries(List<int> numbersList)//הדפסת הסדרה
             {
                 foreach (var number in numbersList)
@@ -119,6 +135,7 @@ namespace series_analyzer
                 }
             }
 
+
             void printReverse(List<int> numbersList)//הדפסת הסדרה הפוך
             {
                 for (int i = (numbersList.Count) - 1; i > -1; i--)
@@ -126,6 +143,7 @@ namespace series_analyzer
                     Console.WriteLine(numbersList[i]);
                 }
             }
+
 
             void sortSeries(List<int> numbersList)//הדפסת הסדרה בצורה ממויינת
             {
@@ -148,6 +166,7 @@ namespace series_analyzer
 
             }
 
+
             int Minimum(List<int> numbersList)//מחזירה מינימום
             {
                 int minimum = numbersList[0];
@@ -160,6 +179,7 @@ namespace series_analyzer
                 }
                 return minimum;
             }
+
 
             int maximum(List<int> numbersList)//מחזירה מקסימום
             {
@@ -174,6 +194,7 @@ namespace series_analyzer
                 return maximum;
             }
 
+
             int average(List<int> numbersList)//חישוב ממוצע
             {
                 int sum = SumSeries(numbersList);
@@ -185,6 +206,7 @@ namespace series_analyzer
             {
                 return numbersList.Count;
             }
+
 
             int SumSeries(List<int> numbersList)//סוכמת את המספרים בסדרה
             {
@@ -201,5 +223,4 @@ namespace series_analyzer
     }
 
 }
-
 
