@@ -90,11 +90,13 @@ namespace series_analyzer
                 Console.WriteLine("enter series numbers");
                 string series = Console.ReadLine();
                 List<int> seriesNumbers = new List<int>();
+                int counter = 0;
                 List<string> seriesString = new List<string>(series.Split(","));
                 foreach (string str in seriesString)
                 {
                     if (int.TryParse(str, out int numm))
                     {
+                        counter += 1;
                         if (int.Parse(str) < 0)
                         {
                             positiveNumbers = false;
@@ -110,7 +112,7 @@ namespace series_analyzer
                         }
                     }
                 }
-                if (!positiveNumbers)
+                if (!positiveNumbers || counter < 3)
                 {
                     return seriesUpdate();
                 }
