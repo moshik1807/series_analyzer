@@ -44,7 +44,7 @@ namespace series_analyzer
                             sortSeries(numbers);
                             break;
                         case 5:
-                            Console.WriteLine(minimum(numbers));
+                            Console.WriteLine(Minimum(numbers));
                             break;
                         case 6:
                             Console.WriteLine(maximum(numbers));
@@ -137,14 +137,7 @@ namespace series_analyzer
                 }
                 while (tempList.Count != 0)
                 {
-                    int minimum = tempList[0];
-                    foreach (var number in tempList)
-                    {
-                        if (number < minimum)
-                        {
-                            minimum = number;
-                        }
-                    }
+                    int minimum = Minimum(tempList);
                     sortList.Add(minimum);
                     tempList.Remove(minimum);
                 }
@@ -155,7 +148,7 @@ namespace series_analyzer
 
             }
 
-            int minimum(List<int> numbersList)//מחזירה מינימום
+            int Minimum(List<int> numbersList)//מחזירה מינימום
             {
                 int minimum = numbersList[0];
                 foreach (var number in numbersList)
@@ -183,11 +176,7 @@ namespace series_analyzer
 
             int average(List<int> numbersList)//חישוב ממוצע
             {
-                int sum = 0;
-                foreach (var number in numbersList)
-                {
-                    sum += number;
-                }
+                int sum = SumSeries(numbersList);
                 return sum / numbersList.Count;
             }
 
@@ -204,7 +193,6 @@ namespace series_analyzer
                 {
                     sum += number;
                 }
-                //Console.WriteLine(sum);
                 return sum;
             }
         }
