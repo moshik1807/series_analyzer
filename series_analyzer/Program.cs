@@ -48,15 +48,15 @@ namespace series_analyzer
                         case 6:
                             maximum(numbers);
                             break;
-                        //case 7:
-                        //    average(series);
-                        //    break;
-                        //case 8:
-                        //    amountOfElements(series);
-                        //    break;
-                        //case 9:
-                        //    SumSeries(series);
-                        //    break;
+                        case 7:
+                            average(numbers);
+                            break;
+                        case 8:
+                            amountOfElements(numbers);
+                            break;
+                        case 9:
+                            SumSeries(numbers);
+                            break;
                         case 10:
                             temp = false;
                             break;
@@ -96,11 +96,15 @@ namespace series_analyzer
             void sortSeries(List<int> numbersList)
             {
                 List<int> sortList = new List<int>();
-                List<int> tempList = numbersList;
+                List<int> tempList =new List<int>();
+                for (int i = 0; i < numbersList.Count; i++)
+                {
+                    tempList.Add(numbersList[i]);
+                }
                 while (tempList.Count != 0)
                 {
-                    int minimum = numbersList[0];
-                    foreach (var number in numbersList)
+                    int minimum = tempList[0];
+                    foreach (var number in tempList)
                     {
                         if (number < minimum)
                         {
@@ -108,7 +112,7 @@ namespace series_analyzer
                         }
                     }
                     sortList.Add(minimum);
-                    numbersList.Remove(minimum);
+                    tempList.Remove(minimum);
                 }
                 foreach (var number in sortList)
                 {
@@ -142,7 +146,31 @@ namespace series_analyzer
                 }
                 Console.WriteLine(maximum);
             }
+            void average(List<int> numbersList)
+            {
+                int sum = 0;
+                foreach (var number in numbers)
+                {
+                    sum += number;
+                }
+                Console.WriteLine(sum / numbersList.Count);
+            }
+            void amountOfElements(List<int> numbersList)
+            {
+                Console.WriteLine(numbersList.Count);
+            }
+            void SumSeries(List<int> numbersList)
+            {
+                int sum = 0;
+                foreach (var number in numbersList)
+                {
+                    sum += number;
+                }
+                Console.WriteLine(sum);
+            }
         }
+
+        
     }
     
 }
